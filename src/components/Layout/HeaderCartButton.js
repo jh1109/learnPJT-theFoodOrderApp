@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import CartIcon from "../Cart/CartIcon";
 // import Cart from "../Cart/Cart";
 import classes from "./HeaderCartButton.module.css";
+import CartContext from "../../store/cart-context";
 
 const HeaderCartButton = ({ onClick }) => {
   // const [showCart, setShowCart] = useState(false);
@@ -12,6 +13,8 @@ const HeaderCartButton = ({ onClick }) => {
   // const closeCartHandler = () => {
   //   setShowCart(false);
   // };
+  const ctx = useContext(CartContext);
+
   return (
     // <Fragment>
     // {showCart && <Cart onClose={closeCartHandler} />}
@@ -20,7 +23,7 @@ const HeaderCartButton = ({ onClick }) => {
         <CartIcon />
       </span>
       <span>Your Cart</span>
-      <span className={classes.badge}>3</span>
+      <span className={classes.badge}>{ctx.totalAmount}</span>
     </button>
     // </Fragment>
   );
