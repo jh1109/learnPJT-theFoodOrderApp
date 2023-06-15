@@ -13,7 +13,17 @@ const HeaderCartButton = ({ onClick }) => {
   // const closeCartHandler = () => {
   //   setShowCart(false);
   // };
-  const ctx = useContext(CartContext);
+
+  // 지정한 context에 접근하기 위해서는 가장 가까운 Provider를 찾는다.
+  const cartCtx = useContext(CartContext);
+
+  // const numberOfCartItems = cartCtx.items.length;
+
+  // Item의 개수말고 전체 총 구매수량을 알고 싶다면?
+  // reduce에서 두개의 인자는 cur: 누적 숫자, item: 현재 살펴보고 있는 항목
+  const numberOfCartItems = cartCtx.items.reduce((curNumber, item) => {
+    return curNumber + item.amount;
+  }, 0);
 
   return (
     // <Fragment>
@@ -23,7 +33,7 @@ const HeaderCartButton = ({ onClick }) => {
         <CartIcon />
       </span>
       <span>Your Cart</span>
-      <span className={classes.badge}>{ctx.totalAmount}</span>
+      <span className={classes.badge}>{numberOfCartItems}</span>
     </button>
     // </Fragment>
   );
