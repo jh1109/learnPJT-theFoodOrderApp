@@ -3,7 +3,7 @@ import React from "react";
 import Card from "../UI/Card";
 
 import classes from "./AvailableMeals.module.css";
-import MealItem from "./MealItem";
+import MealItem from "./MealItem/MealItem";
 
 const DUMMY_MEALS = [
   {
@@ -33,21 +33,18 @@ const DUMMY_MEALS = [
 ];
 
 const AvailableMeals = () => {
-  const mealsList = DUMMY_MEALS;
+  const mealsList = DUMMY_MEALS.map((meal) => (
+    <MealItem
+      key={meal.id}
+      name={meal.name}
+      description={meal.description}
+      price={meal.price}
+    />
+  ));
   return (
     <section className={classes.meals}>
       <Card>
-        <ul>
-          {mealsList.map((meal) => (
-            <li key={meal.id}>
-              <MealItem
-                name={meal.name}
-                description={meal.description}
-                price={meal.price}
-              />
-            </li>
-          ))}
-        </ul>
+        <ul>{mealsList}</ul>
       </Card>
     </section>
   );
