@@ -4,7 +4,7 @@ import CartIcon from "../Cart/CartIcon";
 // import Cart from "../Cart/Cart";
 import classes from "./HeaderCartButton.module.css";
 
-const HeaderCartButton = () => {
+const HeaderCartButton = ({ onClick }) => {
   // const [showCart, setShowCart] = useState(false);
   // const cartHandler = () => {
   //   setShowCart(true);
@@ -15,7 +15,7 @@ const HeaderCartButton = () => {
   return (
     // <Fragment>
     // {showCart && <Cart onClose={closeCartHandler} />}
-    <button type="button" className={classes.button}>
+    <button type="button" className={classes.button} onClick={onClick}>
       <span className={classes.icon}>
         <CartIcon />
       </span>
